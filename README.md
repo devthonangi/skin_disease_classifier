@@ -40,35 +40,6 @@ The dataset is preprocessed, and images are resized and normalized before traini
 
 ---
 
-## **Installation Guide**  
-
-### **Set Up Virtual Environment**  
-```bash
-python -m venv venv
-source venv/bin/activate  # (Mac/Linux)
-venv\Scripts\activate  # (Windows)
-```
-
-### **Install Dependencies**  
-```bash
-pip install -r requirements.txt
-```
-
-### **Download the Trained Model**  
-If the model is not included, download it using:  
-```bash
-gdown --id YOUR_MODEL_FILE_ID -O cnn_skin_model.pth
-```
-
-### **Run the Flask Web Application**  
-```bash
-python app.py
-```
-The application will be accessible at:  
-**`http://127.0.0.1:5000/`**  
-
----
-
 ## **Using the Web Application**  
 
 ### **1. Upload an Image via Web UI (index.html)**  
