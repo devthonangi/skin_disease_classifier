@@ -8,7 +8,7 @@ import logging
 #  Initialize Flask App with Logging
 logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
-app.logger.info("✅ Flask app is initializing...")
+app.logger.info(" Flask app is initializing...")
 
 # Define CNN Model (Ensure it matches the trained model)
 class SimpleCNN(torch.nn.Module):
@@ -34,15 +34,15 @@ model_path = "cnn_skin_model.pth"
 
 try:
     if not os.path.exists(model_path):
-        raise FileNotFoundError(f"⚠️ Model file '{model_path}' not found! Please download and place it in the project folder.")
+        raise FileNotFoundError(f"Model file '{model_path}' not found! Please download and place it in the project folder.")
     
     model = SimpleCNN(num_classes=5)
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
-    app.logger.info("✅ Model loaded successfully!")
+    app.logger.info(" Model loaded successfully!")
 
 except Exception as e:
-    app.logger.error(f"❌ Error loading model: {e}")
+    app.logger.error(f" Error loading model: {e}")
     model = None  # Prevents crashes if model fails to load
 
 #  Define Disease Classes
@@ -69,13 +69,13 @@ def predict_skin_disease(image_path):
         confidence = probabilities[predicted_class].item() * 100
         return classes[predicted_class], confidence
     except Exception as e:
-        app.logger.error(f"❌ Error processing image: {e}")
+        app.logger.error(f" Error processing image: {e}")
         return None, None
 
 #  Home Route
 @app.route("/", methods=["GET"])
 def home():
-    return jsonify({"message": "✅ Flask API is running! Use the `/predict` endpoint to classify images."})
+    return jsonify({"message": " Flask API is running! Use the `/predict` endpoint to classify images."})
 
 #  Flask Route for Prediction
 @app.route("/predict", methods=["POST"])
@@ -96,5 +96,5 @@ def predict():
 
 # Run Flask Server
 if __name__ == "__main__":
-    app.logger.info("✅ Flask is running on http://127.0.0.1:5000/")
+    app.logger.info(" Flask is running on http://127.0.0.1:5000/")
     app.run(debug=True)
